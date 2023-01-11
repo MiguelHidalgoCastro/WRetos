@@ -1,21 +1,17 @@
-<?php
+<!DOCTYPE html>
+<html lang="es">
 
-$__url = explode("/", $_SERVER['REQUEST_URI']);
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>INDEX.PHP</title>
+</head>
 
+<body>
+    <h1>Estás en index.php</h1>
+    <a href="vista/listacategorias.php" class="btn btn-primary">Lista Categorias</a>
+</body>
 
-if (isset($__url[5]) && isset($__url[6])) {
-    $__controlador = $__url[5] . "controller";
-    $__metodo = explode("?", $__url[6])[0];
-} else {
-    $__controlador = "iniciocontroller";
-    $__metodo = "index";
-}
-
-require_once 'controlador/' . $__controlador . '.php';
-$__objControlador = new $__controlador();
-$__objControlador->$__metodo();
-
-//http://localhost/wretos/src/php/index.php/categorias/crear
-//echo $__url[5] . "<br>"; //categorias
-//echo $__url[6] . "<br>"; //crear
-
+</html>
