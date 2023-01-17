@@ -1,19 +1,24 @@
 <?php
+
 require_once('../controlador/categoriascontroller.php');
 
 $controlador = new CategoriasController();
-$insert = false;
+$confirm = false;
+$categoria = $controlador->getCategoriaPorId($_GET['idCat']);
+
 if (isset($_POST) && !empty($_POST)) {
-    $insert = $controlador->addCategoria($_POST);
-    if ($insert) {
-        echo "<script>alert('Categoría insertada correctamente')
-        window.location=document.referrer</script>";
+    $confirm = $controlador->updateCategoria($_POST, $_GET['idCat']);
+    if ($confirm) {
+        echo "<script>alert('Categoría modificada correctamente')
+            window.location.href='listacategorias.php'</script>";
     } else {
         echo "<script>alert('ocurrió un problema')</script>";
     }
 }
 
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -32,18 +37,19 @@ if (isset($_POST) && !empty($_POST)) {
         <div class="row">
             <div class="col-6 m-auto">
                 <div class="row">
-                    <h1>AÑADIR CATEGORIA</h1>
+                    <h1>MODIFICAR CATEGORIA</h1>
                 </div>
-                <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de añadir ésta categoria?')">
+                <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de modificar ésta categoria?')">
                     <div class="row">
                         <label for="nombreCat">Nombre de categoría:</label>
-                        <input type="text" name="nombreCat" id="nombreCat" placeholder="Insertar nombre de categoría">
+                        <input type="text" name="nombreCat" id="nombreCat" value="<?php echo ($categoria->nombreCategoria) ?>">
+
                     </div>
                     <div class="row pt-2">
-                        <div class="col-2">
-                            <input class="btn btn-success" type="submit" value="INSERTAR">
+                        <div class="col-3">
+                            <input class="btn btn-success" type="submit" value="MODIFICAR">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <button class="btn btn-secondary"><a class="text-decoration-none text-white" href="listacategorias.php">Atrás</a></button>
                         </div>
                     </div>

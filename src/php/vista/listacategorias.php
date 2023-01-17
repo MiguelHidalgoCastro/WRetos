@@ -59,7 +59,7 @@ if (isset($_GET['action'])) {
                                         <td>$dato->nombreCategoria</td>
                                         <td>
                                         <a href=listacategorias.php?idCat=" . $dato->idCategoria . "&action=borrar><img src=../../assets/icons//delete.png title='borrar' style='width:10%'></a>
-										<a href=modificarescenario.php?idCat=" . $dato->idCategoria . "><img src=../../assets/icons/edit.png title='modificar' style='width:10%'></a>
+										<a href=modifcarcategoria.php?idCat=" . $dato->idCategoria . "><img src=../../assets/icons/edit.png title='modificar' style='width:10%'></a>
                                         </td>
                                         </tr>";
                                 }

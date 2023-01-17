@@ -9,6 +9,11 @@ class CategoriasController
         $this->categorias = new Categorias();
     }
 
+    public function addCategoria($post)
+    {
+        return $this->categorias->addCategoria($post);
+    }
+
     public function getAllCategorias()
     {
         return $this->categorias->getAll();
@@ -24,9 +29,8 @@ class CategoriasController
         return $this->categorias->borrar($id);
     }
 
-    public function index()
+    public function updateCategoria($post, $id)
     {
-        //http://localhost/wretos/src/php/index.php/categorias/index
-        echo "estoy en el metodo index de categorias";
+        return $this->categorias->update($post, $id);
     }
 }
