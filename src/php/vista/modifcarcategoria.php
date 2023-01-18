@@ -33,6 +33,24 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#">WEB RETOS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="listacategorias.php">Lista Categorias</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="row">
             <div class="col-6 m-auto">
