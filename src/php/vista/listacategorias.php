@@ -4,6 +4,9 @@ require_once '../controlador/categoriascontroller.php';
 
 $controladorCategoria = new CategoriasController();
 $datos = $controladorCategoria->getAllCategorias();
+$noHayDatos = false;
+if ($datos->num_rows === 0)
+    $noHayDatos = true;
 
 if (isset($_GET['action'])) {
     $borrado = $controladorCategoria->borrarCategoria($_GET['idCat']);
@@ -59,9 +62,9 @@ if (isset($_GET['action'])) {
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Opciones</th>
+                                <th scope="col" class="text-center">#ID</th>
+                                <th scope="col" class="text-center">Nombre</th>
+                                <th scope="col" class="text-center">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,18 +74,22 @@ if (isset($_GET['action'])) {
                                 while ($dato = $datos->fetch_object()) {
                                     //echo($dato->nombreCategoria);
                                     echo "<tr>
-                                        <th scope='row'>$dato->idCategoria</th>
-                                        <td>$dato->nombreCategoria</td>
-                                        <td>
+                                        <th scope='row' class='text-center'>$dato->idCategoria</th>
+                                        <td class='text-center'>$dato->nombreCategoria</td>
+                                        <td class='text-center'>
                                         <a href=listacategorias.php?idCat=" . $dato->idCategoria . "&action=borrar><img src=../../assets/icons//delete.png title='borrar' style='width:10%'></a>
-										<a href=modifcarcategoria.php?idCat=" . $dato->idCategoria . "><img src=../../assets/icons/edit.png title='modificar' style='width:10%'></a>
+										<a href=modificarcategoria.php?idCat=" . $dato->idCategoria . "><img src=../../assets/icons/edit.png title='modificar' style='width:10%'></a>
                                         </td>
                                         </tr>";
                                 }
                             }
+                            ?>
+                            <?php
+                            if ($noHayDatos) {
+                                echo '<tr><td class="text-center">NO HAY DATOS</td><td class="text-center">NO HAY DATOS</td><td class="text-center">NO HAY DATOS</td></tr>';
+                            }
 
                             ?>
-
                         </tbody>
                     </table>
                 </div>

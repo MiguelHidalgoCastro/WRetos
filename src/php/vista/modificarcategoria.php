@@ -7,19 +7,23 @@ $confirm = false;
 $categoria = $controlador->getCategoriaPorId($_GET['idCat']);
 
 if (isset($_POST) && !empty($_POST)) {
-    $confirm = $controlador->updateCategoria($_POST, $_GET['idCat']);
-    if ($confirm) {
-        echo "<script>alert('Categoría modificada correctamente')
+    if (!empty($_POST['nombreCat'])) {
+        if (strlen($_POST['nombreCat']) > 3) {
+            $confirm = $controlador->updateCategoria($_POST, $_GET['idCat']);
+            if ($confirm) {
+                echo "<script>alert('Categoría modificada correctamente')
             window.location.href='listacategorias.php'</script>";
-    } else {
-        echo "<script>alert('ocurrió un problema')</script>";
-    }
+            } else {
+                echo "<script>alert('ocurrió un problema')</script>";
+            }
+        } else
+            echo "<script>alert('El nombre de la categoría es demasiado pequeño, mínimo 4 letras')</script>";
+    } else
+        echo "<script>alert('El nombre de la categoría está vacío, rellenalo')</script>";
 }
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">

@@ -4,13 +4,19 @@ require_once('../controlador/categoriascontroller.php');
 $controlador = new CategoriasController();
 $insert = false;
 if (isset($_POST) && !empty($_POST)) {
-    $insert = $controlador->addCategoria($_POST);
-    if ($insert) {
-        echo "<script>alert('Categoría insertada correctamente')
+    if (!empty($_POST['nombreCat'])) {
+        if (strlen($_POST['nombreCat']) > 3) {
+            $insert = $controlador->addCategoria($_POST);
+            if ($insert) {
+                echo "<script>alert('Categoría insertada correctamente')
         window.location.href='listacategorias.php'</script>";
-    } else {
-        echo "<script>alert('ocurrió un problema')</script>";
-    }
+            } else {
+                echo "<script>alert('ocurrió un problema')</script>";
+            }
+        } else
+            echo "<script>alert('El nombre de la categoría es demasiado pequeño, mínimo 4 letras')</script>";
+    } else
+        echo "<script>alert('El nombre de la categoría está vacío, rellenalo')</script>";
 }
 
 ?>
